@@ -3,9 +3,6 @@ package servlet;
 import config.JavaConfig;
 import controller.PostController;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContextExtensionsKt;
-import repository.PostRepository;
-import service.PostService;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,13 +15,6 @@ public class MainServlet extends HttpServlet {
     private final String DELETE = "DELETE";
     final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
     final PostController controller = context.getBean(PostController.class);
-
-//    @Override
-//    public void init() {
-//        final var repository = new PostRepository();
-//        final var service = new PostService(repository);
-//        controller = new PostController(service);
-//    }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
