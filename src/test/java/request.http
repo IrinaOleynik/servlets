@@ -1,4 +1,10 @@
-GET http://localhost:8080/api/posts
+POST http://localhost:8080/api/posts
+Content-Type: application/json
+
+{
+  "id": 0,
+  "content": "Last Post"
+}
 
 ###
 
@@ -7,5 +13,9 @@ Content-Type: application/json
 
 {
   "id": 0,
-  "content": "Last Post"
+  "content": "OneMore Post"
 }
+
+###
+
+GET http://localhost:8080/api/posts
