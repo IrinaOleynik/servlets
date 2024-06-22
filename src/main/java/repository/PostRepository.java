@@ -2,10 +2,12 @@ package repository;
 
 import exception.NotFoundException;
 import model.Post;
+import org.springframework.stereotype.Repository;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@Repository
 public class PostRepository {
     private AtomicInteger newId = new AtomicInteger(0);
     private final Map<Long, Post> posts = new ConcurrentHashMap<>();
@@ -18,10 +20,10 @@ public class PostRepository {
     }
 
     public Post save(Post post) {
-        if (posts.containsKey(post.getId())) {
-            posts.put(post.getId(), post);
-        } else if (post.getId() == 0) {
+        if (post.getId() == 0) {
             post.setId(newId.getAndIncrement());
+            posts.put(post.getId(), post);
+        } else if (!posts.containsKey(post.getId())) {
             posts.put(post.getId(), post);
         } else {
             throw new NotFoundException("Post not found");
