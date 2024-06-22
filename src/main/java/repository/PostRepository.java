@@ -18,10 +18,10 @@ public class PostRepository {
     }
 
     public Post save(Post post) {
-        if (posts.containsKey(post.getId())) {
-            posts.put(post.getId(), post);
-        } else if (post.getId() == 0) {
+        if (post.getId() == 0) {
             post.setId(newId.getAndIncrement());
+            posts.put(post.getId(), post);
+        } else if (!posts.containsKey(post.getId())) {
             posts.put(post.getId(), post);
         } else {
             throw new NotFoundException("Post not found");
